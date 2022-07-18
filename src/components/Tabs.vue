@@ -32,32 +32,35 @@ export default defineComponent({
 // todo, work on is active and styling accordingly
 </script>
 
-<style scoped>
-.pokemon__tabs {
-    border-bottom: 1px solid #e0e8eb;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 16px;
-    margin: 16px auto;
-    max-width: 900px;
-    width: 100%;
+<style lang="stylus" scoped>
+.pokemon {
+
+    &__tabs {
+        border-bottom: 1px solid #e0e8eb;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 16px;
+        margin: 16px auto;
+        max-width: 900px;
+    }
+    
+    &__tabs-item {
+        background-color: #fff;
+        border-radius: 4px 4px 0 0;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        width: 49%;
+    }
+
+    &__tabs-item:hover {
+        background-color: lightblue;
+    }
+
+    &__tabs button.active {
+        background-color: teal;
+        color: #fff;
+    }
 }
 
-.pokemon__tabs-item {
-    background-color: #fff;
-    border-radius: 4px 4px 0 0;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    width: 49%;
-}
-
-.pokemon__tabs-item:hover {
-    background-color: lightblue;
-}
-
-.pokemon__tabs button.active {
-    background-color: teal;
-    color: #fff;
-}
 </style>

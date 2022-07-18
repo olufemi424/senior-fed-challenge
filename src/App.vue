@@ -1,11 +1,4 @@
 <template>
-  <!-- <div>
-    <nav class="">
-      <router-link to="/"> Home </router-link> |
-      <router-link to="/rayu"> Pokenmon: name </router-link>
-      <router-view />
-    </nav>
-  </div> -->
   <router-view />
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="pokemon_search">
         <div class="pokemon__search-filter">
-            <input type="text" placeholder="Search your favorite pokemon">
+            <input v-model="searchTerm" @input="searchParam" type="text" placeholder="e.g. Charizard">
             <select name="types" id="pokemon-types" :value="type" @change="$emit('filter-by-type', $event.target.value)">
                 <option value="">--All--</option>
                 <option v-for="t in pokemonTypes" :value="t" :key="t">{{ t }}</option>
@@ -12,7 +12,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
+
+interface InputFileEvent extends Event {
+    target: HTMLInputElement;
+}
 
 export default defineComponent({
     name: 'SearchFilters',
@@ -23,11 +27,22 @@ export default defineComponent({
         type: {
             type: String as PropType<String>
         }
-
     },
+    setup(props, { emit }) {
+        const searchTerm = ref<string>('');
+        function searchParam(e: InputFileEvent) {
+            setTimeout(() => {
+                emit('search-term', e.target.value);
+            }, 1000);
+        };
+
+        return {
+            searchTerm,
+            searchParam
+        };
+    }
 });
 
-// todo, work on is active and styling accordingly
 </script>
 
 <style scoped>

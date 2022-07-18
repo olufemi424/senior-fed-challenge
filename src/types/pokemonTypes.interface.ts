@@ -6,7 +6,7 @@ export interface PokemonListResponse {
 }
 
 export interface PokemonSummary {
-  id:         string;
+  id:         string | number;
   name:       string;
   number:     number;
   image:      string;
@@ -44,4 +44,9 @@ export interface paginationMetaTypes {
 export interface Eight {
   minimum: number;
   maximum: number;
+}
+
+export interface Favorite {
+  favorite: boolean;
+  id: string;
 }

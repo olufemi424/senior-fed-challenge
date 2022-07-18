@@ -1,20 +1,24 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'home',
-        component: HomeView,
+        component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue'),
     },
     {
-        path: '/pokemon:id',
+        path: '/pokemon/:id',
         name: 'pokemon',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "pokenmon" */ '../views/PokenmoItem.vue'),
+        component: () => import(/* webpackChunkName: "pokenmon" */ '../views/PokemoItem.vue'),
     },
+    // {
+    //     path: '/:catchAll(.*)*',
+    //     name: 'pokemon',
+    //     component: () => import(/* webpackChunkName: "page-not-found" */ '../views/PageNotFound.vue'),
+    // },
 ];
 
 const router = createRouter({

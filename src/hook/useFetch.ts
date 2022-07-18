@@ -1,5 +1,5 @@
 import {
-    ComputedRef, reactive, watchEffect,
+    ComputedRef, reactive, watchEffect, UnwrapRef
 } from 'vue';
 
 interface FetchState<T> {
@@ -15,7 +15,7 @@ export default function useFetch<T>(url: ComputedRef<string>) {
         data: null,
     });
 
-    const fetchData = async () => {
+    const fetchData = async () :Promise<void> => {
         state.loading = true;
         state.data = null;
         state.error = '';

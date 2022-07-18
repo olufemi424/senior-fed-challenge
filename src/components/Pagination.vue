@@ -4,7 +4,13 @@
             <ul class="pagination">
                 <!-- back button -->
                 <li class="pagination__item">
-                    <button class="pagination__button" @click="$emit('pagination-item-clicked', paginationMeta.currentPage - 1)">Back</button>
+                    <button 
+                        class="pagination__button" 
+                        @click="$emit('pagination-item-clicked', paginationMeta.currentPage - 1)"
+                        :disabled="paginationMeta.currentPage == 1"
+                    >
+                        Prev
+                    </button>
                 </li>
 
                 <!-- always print the first  page -->
@@ -37,7 +43,7 @@
                         </li>
 
                         <li class="pagination__item">
-                            <div class="pagination__button">○○○</div>
+                            <div class="pagination__button pagination__button-ellipses">○○○</div>
                         </li>
                     </template>
 
@@ -45,7 +51,7 @@
                     pages ranges, with the current page in the middle -->
                     <template v-else-if="paginationMeta.currentPage >= 6 && paginationMeta.currentPage < paginationMeta.totalPages - 7">
                         <li class="pagination__item">
-                            <div class="pagination__button">○○○</div>
+                            <div class="pagination__button pagination__button-ellipses">○○○</div>
                         </li>
 
                         <li 
@@ -63,7 +69,7 @@
                     pages ranges, with the current page in the middle -->
                     <template v-else>
                         <li class="pagination__item">
-                            <div class="pagination__button">○○○</div>
+                            <div class="pagination__button pagination__button-ellipses">○○○</div>
                         </li>
 
                         <li
@@ -85,7 +91,14 @@
 
                 <!-- Next button -->
                 <li class="pagination__item">
-                    <button class="pagination__button" @click="$emit('pagination-item-clicked', paginationMeta.currentPage + 1)">Next</button>
+                    <button 
+                        :disabled="paginationMeta.currentPage == paginationMeta.totalPages"
+                        class="pagination__button"
+                        @click="$emit('pagination-item-clicked',
+                        paginationMeta.currentPage + 1)"
+                    >
+                        Next
+                    </button>
                 </li>
             </ul>
         </nav>
@@ -93,15 +106,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, watch } from "vue";
 import { PaginationTypes, paginationMetaTypes } from "../types/pokemonTypes.interface";
 
 export default defineComponent({
     name: 'Pagination',
     props: {
-        pagination: {
-        type: Object as PropType<PaginationTypes>,
-        required: true
+            pagination: {
+            type: Object as PropType<PaginationTypes>,
+            required: true
         }
     },
     computed: {
@@ -121,7 +134,7 @@ export default defineComponent({
             }
             return pageRange;
         }
-    }
+    },
 });
 </script>
 
@@ -153,11 +166,24 @@ export default defineComponent({
 }
 
 .pagination__button:hover {
-    background-color: #9ed5ff;
+    background-color: rgba(87, 181, 181, 0.611);
+}
+
+.pagination__button.pagination__button-ellipses:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.pagination__button:disabled,
+.pagination__button[disabled] {
+    background-color: #9aabb84f;
+    cursor: not-allowed;
+    font-weight: 400;
+    color: #2c3e5074;
 }
 
 .pagination__item--current .pagination__button {
-    background-color: #9ed5ff;
+    background-color: teal;
     color: #fff;
 }
 </style>
