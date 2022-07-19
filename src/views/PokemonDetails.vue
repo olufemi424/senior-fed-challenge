@@ -22,10 +22,7 @@
                                 Your browser does not support the <code>audio</code> element.
                             </audio>
                         </div>
-                        <div>
-                            <button @click="handleFavoritePokemon({favorite: false, id: pokemon.id})" v-if="pokemon.data.isFavorite">❤️</button>
-                            <button @click="handleFavoritePokemon({favorite: true, id: pokemon.id})"  v-else>🤍</button>
-                        </div>
+                        <FavoriteAction @handle-favorite-pokemon="handleFavoriteCurrentPokemon" :pokemon="pokemon.data" />
                     </div>
 
                     <h4>Types</h4>
@@ -60,16 +57,18 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
-import { Pokemon, PokemonSummary } from "../types/pokemonTypes.interface";
+import { Favorite, Pokemon, PokemonSummary } from "../types/pokemonTypes.interface";
 import { useRoute } from "vue-router";
 import useFetch from '../hook/useFetch';
 import PokemonCard from "../components/PokemonCard.vue";
+import FavoriteAction from '../components/FavoriteAction.vue';
 
 
 export default defineComponent({
     name: "PokemonItem",
     components: {
         PokemonCard,
+        FavoriteAction,
     },
     setup() {
         const route = useRoute()
@@ -86,8 +85,9 @@ export default defineComponent({
             }
         }
 
-        const handleFavoritePokemon = (data: { id: Number, favorite: Boolean }) => {
+        const handleFavoritePokemon = (data: Favorite) => {
             const { id, favorite } = data;
+
             pokemon.data?.evolutions.forEach((item: PokemonSummary) => {
                 // update the current item isFavorite value
                 if (item.id == id && favorite) {
@@ -95,7 +95,13 @@ export default defineComponent({
                 } else if (item.id == id && !favorite) {
                     item.isFavorite = false; // update single item on the all page
                 }
-            })
+            });
+        }
+
+        const handleFavoriteCurrentPokemon = (data: Favorite) => {
+            if (pokemon.data) {
+                pokemon.data.isFavorite = !pokemon.data.isFavorite;
+            }
         }
 
         return {
@@ -103,116 +109,142 @@ export default defineComponent({
             audioElement,
             handlePlayAudio,
             handleFavoritePokemon,
+            handleFavoriteCurrentPokemon
         }
     },
 });
 </script>
 
 <style lang="stylus" scoped>
-.pokemon-item__container {
-    max-width: 900px;
-    margin: 24px auto;
-}
+.pokemon-item {
+    &__container {
+        margin: 24px auto;
+        max-width: 900px;
+    }
 
-nav {
-    align-items: center;
-    background: #fff;
-    display: flex;
-    height: 50px;
-    width: 100%;
-    box-shadow: 0 4px 15px 2px rgba(0,0,0,0.1);
-}
+    nav {
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 15px 2px rgba(0,0,0,0.1);
+        display: flex;
+        height: 50px;
+        width: 100%;
+    }
 
-.pokemon-item__all-button {
-    background-color: teal;
-    border-radius: 4px;
-    border: 0;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    margin-inline: 4px 16px;
-    padding: 8px;
-    text-decoration: none;
-}
+    &__all-button {
+        background-color: teal;
+        border-radius: 4px;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        margin-inline: 4px 16px;
+        padding: 8px;
+        text-decoration: none;
+    }
 
-.pokemon-item__breakcrumb-title {
-    align-items: center;
-    border-left: 1px solid grey;
-    display: flex;
-    height: 70%;
-    padding-inline-start: 12px;
-}
+    &__breakcrumb-title {
+        align-items: center;
+        border-left: 1px solid grey;
+        display: flex;
+        height: 70%;
+        padding-inline-start: 12px;
+    }
 
-.pokemon-item__name {
-    text-align: center;
-    font-size: 24px;
-}
+    &__name {
+        font-size: 24px;
+        text-align: center;
+    }
 
-.pokemon-item__info {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    &__info {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 26px 5px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 16px;
 
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 26px 5px rgba(0,0,0,0.1);
-    padding: 16px;
-}
+        @media (min-width: 320px) {
+            flex-direction: column;
+        }
 
-.pokemon-item__details,
-.pokemon-item__image {
-    width: 50%;
-}
+        @media (min-width: 767px) {
+            flex-direction: row;
+        }
+    }
 
-.pokemon-item__actions {
-    display: flex;
-    justify-content: space-between;
-}
+    &__details,
+    &__image {
+        @media (min-width: 320px) {
+            width: 100%;
+        }
+        width: 50%;
+    }
 
-.pokemon-item__sound-button {
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid rgba(128, 128, 128, 0.378);
-    cursor: pointer;
-    font-size: 35px;
-}
+    &__image {
+        @media (min-width: 320px) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    
+    @media (min-width: 767px) {
+        &__image img {
+            width: 80%;
+        }
+    }
 
-.pokemon-item__types {
-    display: flex;
-    margin-block: 6px;
-}
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.pokemon-item__type {
-    align-items: center;
-    background-color: #e0e8eb;
-    border-radius: 4px;
-    border: 0;
-    color: #648d9b;
-    display: flex;
-    font-size: 16px;
-    margin-inline-end: 8px;
-    padding: 8px;
-}
+    &__sound-button {
+        background-color: transparent;
+        border-radius: 4px;
+        border: 1px solid rgba(128, 128, 128, 0.378);
+        cursor: pointer;
+        font-size: 35px;
+    }
 
-.pokemon-item__dimensions {
-    background-color: rgba(58, 156, 221, 0.296);
-    border-radius: 8px;
-    margin-block: 4px;
-    padding: 4px 8px;
-}
+    &__types {
+        display: flex;
+        margin-block: 6px;
+    }
 
-.pokemon-item__cap {
-    background-color: rgba(58, 221, 159, 0.296);
-    border-radius: 8px;
-    margin-block: 4px;
-    padding: 4px 8px;
-}
+    &__type {
+        align-items: center;
+        background-color: #e0e8eb;
+        border-radius: 4px;
+        border: 0;
+        color: #648d9b;
+        display: flex;
+        font-size: 16px;
+        margin-inline-end: 8px;
+        padding: 8px;
+    }
 
-.pokemon-item__evolutions {
-    margin: 24px 0;
+    &__dimensions {
+        background-color: rgba(58, 156, 221, 0.296);
+        border-radius: 8px;
+        margin-block: 4px;
+        padding: 4px 8px;
+    }
+
+    &__cap {
+        background-color: rgba(58, 221, 159, 0.296);
+        border-radius: 8px;
+        margin-block: 4px;
+        padding: 4px 8px;
+    }
+
+    &__evolutions {
+        margin: 24px 0;
+    }
+    &__evolutions-items {
+        display: flex;
+    }
 }
-.pokemon-item__evolutions-items {
-    display: flex;
-}
-</style>>
+</style>

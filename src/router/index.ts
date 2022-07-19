@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "pokenmon" */ '../views/PokemonDetails.vue'),
     },
     // {
-    //     path: '/:catchAll(.*)*',
+    //     path: '/:pathMatch(.*)*',
     //     name: 'pokemon',
     //     component: () => import(/* webpackChunkName: "page-not-found" */ '../views/PageNotFound.vue'),
     // },

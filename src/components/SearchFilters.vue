@@ -1,6 +1,6 @@
 <template>
-    <div class="pokemon_search">
-        <div class="pokemon__search-filter">
+    <div class="pokemon-search">
+        <div class="pokemon-search__filter">
             <input v-model="searchTerm" @input="searchParam" type="text" placeholder="e.g. Charizard">
             <select name="types" id="pokemon-types" :value="type" @change="$emit('filter-by-type', $event.target.value)">
                 <option value="">--All--</option>
@@ -46,40 +46,38 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.pokemon_search {
+.pokemon-search {
     display: flex;
     margin: 32px auto;
     max-width: 900px;
 }
 
-.pokemon__search-filter {
-  width: 70%;
+.pokemon-search__filter {
+  align-items: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  width: 70%;
 }
 
-.pokemon__search-filter input {
-    width: 48%;
-    padding: 7px 0;
+.pokemon-search__filter input {
     background-color: #fff;
-    border: 1px solid teal;
     border-radius: 8px;
+    border: 1px solid teal;
+    padding: 7px 0;
     text-indent: 10px;
+    width: 48%;
 }
 
-.pokemon__search-filter select {
-    width: 48%;
-    padding: 7px 0;
-    background-color: #fff;
-    border: 1px solid teal;
-    border-radius: 8px;
-
-    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 100% 50%;
+.pokemon-search__filter select {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
+    background-color: #fff;
+    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 100% 50%;
+    border-radius: 8px;
+    border: 1px solid teal;
+    padding: 7px 0;
     text-indent: 10px;
-    
+    width: 48%;
 }
 </style>

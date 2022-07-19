@@ -39,7 +39,7 @@
                 class="pokemon__not-found"
                 v-if="pokemons.data !== null && pokemons.data.items.length === 0"
             >
-                No Pokemon Found
+                {{ isFavorite ? 'No Favorite Pokemon' : 'No Pokemon Found' }}
             </h3>
         </div>
 
@@ -53,14 +53,13 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, reactive } from "vue";
-import { PokemonListResponse, Pokemon, PaginationTypes, PokemonSummary } from "../types/pokemonTypes.interface";
+import { PokemonListResponse, PokemonSummary } from "../types/pokemonTypes.interface";
 import Pagination from '../components/Pagination.vue';
 import PokemonList from '../components/PokemonList.vue';
 import Tabs from '../components/Tabs.vue';
 import SearchFilters from '../components/SearchFilters.vue';
 
 import useFetch from '../hook/useFetch';
-import usePost from '../hook/favoritePokemon';
 
 export default defineComponent({
     name: "HomeView",
@@ -78,8 +77,6 @@ export default defineComponent({
         const searchParam = ref<string>('');
         const isFavorite = ref<boolean>(false);
         const type = ref<string>('');
-
-        // const favoriteUrl = computed(() => isFavorite.value ? `&isFavorite=${isFavorite.value}` : '');
 
         // computed variables
         const pokemonApiUrl = computed(() => {
@@ -100,10 +97,6 @@ export default defineComponent({
                 })
             }
         })
-
-        if (pokemons.data) {
-            pokemons.data.items[0].isFavorite = true;
-        };
 
         // update pagination offset value 
         const handlePagePaginationClick = (page: number) : void => {
@@ -154,25 +147,6 @@ export default defineComponent({
                 }
             })
         }
-
-        // window.onscroll = () => {
-        //     let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
-        //     if (bottomOfWindow) {
-        //         console.log(123)
-        //         offset.value = offset.value / limit.value * limit.value;
-        //         const morepokemons = useFetch<PokemonListResponse>(pokemonApiUrl);
-
-        //         console.log(pokemons.data)
-
-        //         if (pokemons.data && morepokemons.data) {
-        //             const { items } = morepokemons.data;
-        //             console.log(items)
-        //             // pokemons.data.items.push(items)
-        //         }
-
-        //     }
-        // };
 
         return {
             handleFavoritePokemon,

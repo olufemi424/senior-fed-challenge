@@ -13,10 +13,7 @@
                         {{ type }}
                     </div>
                 </div>
-                <div class="pokemon__favorite">
-                    <button @click="handleFavoritePokemon({favorite: false, id: pokemon.id})" v-if="pokemon.isFavorite">❤️</button>
-                    <button @click="handleFavoritePokemon({favorite: true, id: pokemon.id})"  v-else>🤍</button>
-                </div>
+                <FavoriteAction :pokemon="pokemon" @handle-favorite-pokemon="handleFavoritePokemon"/>
             </div>
         </div>
     </div>
@@ -26,8 +23,12 @@
 import { defineComponent, PropType } from "vue";
 import { PokemonSummary, Favorite, Pokemon } from "../types/pokemonTypes.interface";
 import usePost from '../hook/favoritePokemon';
+import FavoriteAction from './FavoriteAction.vue';
 export default defineComponent({
     name: 'PokemonCard',
+    components: {
+        FavoriteAction,
+    },
     props: {
         isList: {
             type: Boolean as PropType<Boolean>
