@@ -200,6 +200,9 @@ export default defineComponent({
         display: flex;
         justify-content: space-between;
 
+         @media (min-width: 320px) {
+            margin-block: 16px;
+        }
     }
 
     &__sound-button {

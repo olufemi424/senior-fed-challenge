@@ -1,5 +1,5 @@
 import {
-    ComputedRef, reactive, watchEffect, UnwrapRef
+    ComputedRef, reactive, watchEffect,
 } from 'vue';
 
 interface FetchState<T> {

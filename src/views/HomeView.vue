@@ -140,9 +140,9 @@ export default defineComponent({
                             return items;
                         }, []);
 
+                        // TODO
                         // buggy pagination here
                         // if an item is unfavorite, on a page that is greater than 1, show previous page
-                        // if an item is unfavorite and re-fetch the items to show proper pagination and items
                     }
                 }
             })
@@ -156,13 +156,13 @@ export default defineComponent({
             handleSearchType,
             isFavorite,
             offset,
+            pagination,
             pokemonApiUrl,
             pokemons,
             pokemonTypeList,
             searchParam,
             type,
             viewType,
-            pagination,
         }  
     },
 });

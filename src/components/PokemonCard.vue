@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { PokemonSummary, Favorite, Pokemon } from "../types/pokemonTypes.interface";
-import usePost from '../hook/favoritePokemon';
+import { favoritePokemon } from '../hook/favoritePokemon';
 import FavoriteAction from './FavoriteAction.vue';
 export default defineComponent({
     name: 'PokemonCard',
@@ -38,11 +38,17 @@ export default defineComponent({
             required: true
         },
     },
-    setup(porps, { emit }) {
+    setup({}, { emit }) {
         return {
-            handleFavoritePokemon (data: Favorite) {
-                const res = usePost<Pokemon>(data.id, data.favorite);
-                emit('handle-favorite-pokemon', data);
+            // favorite pokemon
+            async handleFavoritePokemon (data: Favorite) {
+                const res: Pokemon = await (await favoritePokemon(data.id, data.favorite)).json();
+                if (res.id === data.id) {
+                    emit('handle-favorite-pokemon', data);
+                } else {
+                    // error can be handled using tost message or give some kind of feedback to the user
+                    console.log('Error posting data')
+                }
             },
         }
     },
