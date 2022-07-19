@@ -29,7 +29,7 @@ Project scafolding with Vite [Vite](https://github.com/vitejs/vite)
 
 |             List View              |             Detail View              |
 |:----------------------------------:|:------------------------------------:|
-| ![](src/assets/example-list-view.png) | ![](example/example-detail-view.png) |
+| ![](src/assets/example-list-view.png) | ![](src/assets/example-detail-view.png) |
 
 ## What I learned 
 
