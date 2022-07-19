@@ -27,6 +27,10 @@ Front-end frame work is Vue3 + TypeScript [Vue](https://github.com/vuejs/vue), I
 
 Project scafolding with Vite [Vite](https://github.com/vitejs/vite)
 
+|             List View              |             Detail View              |
+|:----------------------------------:|:------------------------------------:|
+| ![](src/assets/example-list-view.png) | ![](example/example-detail-view.png) |
+
 ## What I learned 
 
 I have always wanted to use TypeScript, this provides me with an opportunity to play around with it, and i must say its really a developer friend and i will love to use it more in future projects.
