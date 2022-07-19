@@ -52,11 +52,36 @@ export default defineComponent({
     max-width: 900px;
 }
 
+@media (min-width: 320px) {
+    .pokemon-search {
+        flex-direction: column;
+    }   
+}
+
+@media (min-width: 767px) {
+    .pokemon-search {
+        flex-direction: row;
+    }
+}
+
 .pokemon-search__filter {
   align-items: center;
   display: flex;
   justify-content: space-around;
-  width: 70%;
+}
+
+@media (min-width: 320px) {
+    .pokemon-search__filter {
+        width: 100%;
+        margin-block-end: 16px;
+    } 
+}
+
+@media (min-width: 767px) {
+    .pokemon-search__filter {
+        width: 70%;
+        margin-block-end: 0;
+    } 
 }
 
 .pokemon-search__filter input {

@@ -22,7 +22,7 @@
                                 Your browser does not support the <code>audio</code> element.
                             </audio>
                         </div>
-                        <FavoriteAction @handle-favorite-pokemon="handleFavoriteCurrentPokemon" :pokemon="pokemon.data" />
+                        <FavoriteAction class="pokemon-item__favorite" @handle-favorite-pokemon="handleFavoriteCurrentPokemon" :pokemon="pokemon.data" />
                     </div>
 
                     <h4>Types</h4>
@@ -199,6 +199,7 @@ export default defineComponent({
     &__actions {
         display: flex;
         justify-content: space-between;
+
     }
 
     &__sound-button {
@@ -247,4 +248,4 @@ export default defineComponent({
         display: flex;
     }
 }
-</style>
+</style>>

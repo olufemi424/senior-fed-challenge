@@ -174,6 +174,10 @@ export default defineComponent({
         display: flex;
         justify-content: space-between;
         width: 30%;
+
+        @media (min-width: 320px) {
+            align-self: flex-end;
+        }
     }
 
     &__toggle-view button {

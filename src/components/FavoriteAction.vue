@@ -32,8 +32,18 @@ export default defineComponent({
 .pokemon {
     &__favorite {
         margin-inline-end: 12px;
+        box-shadow: 0 4px 26px 5px rgba(0,0,0,0.1);
+        height: max-content;
+
+        button {
+            cursor: pointer;
+            border: 1px solid rgba(255, 0, 0, 0.357);
+            border-radius: 4px;
+        }
     }
 }
 
-
+.pokemon-item__favorite button {
+    font-size: 35px;
+}
 </style>

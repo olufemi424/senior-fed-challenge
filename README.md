@@ -29,4 +29,4 @@ Project scafolding with Vite [Vite](https://github.com/vitejs/vite)
 
 ## What I learned 
 
-I have always wanted to use TypeScript, this provides me with an opportunity to play around with it, and i must say its really a developer friend.
+I have always wanted to use TypeScript, this provides me with an opportunity to play around with it, and i must say its really a developer friend and i will love to use it more in future projects.

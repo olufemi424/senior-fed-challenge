@@ -65,7 +65,7 @@ export default defineComponent({
         justify-content: space-around;
         margin-block-end: 16px;
         margin-inline-end: 16px;
-        max-width: 218px;
+        max-width: 244px;
         min-width: 200px;
         padding: 12px 0;
 
