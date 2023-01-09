@@ -12,7 +12,7 @@
             <h3 class="pokemon-item__name">{{ pokemon.data.name }}</h3>
             <div class="pokemon-item__info">
                 <div class="pokemon-item__image">
-                    <img :src="pokemon.data.image" :alt="pokemon.name" />
+                    <img :src="pokemon.data.image" :alt="pokemon.data.name" />
                 </div>
                 <div class="pokemon-item__details">
                     <div class="pokemon-item__actions">
