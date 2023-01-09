@@ -1,7 +1,7 @@
 <template>
     <div class="pokemon-item">
         <nav>
-            <a class="pokemon-item__all-button" href="/">← All Pokemon</a> 
+            <a class="pokemon-item__all-button" href="/">← All Pokemon</a>
             <p class="pokemon-item__breakcrumb-title" v-if="pokemon.data !== null">{{ pokemon.data.name }}</p>
         </nav>
 
@@ -41,8 +41,8 @@
                         <p>CP: {{ pokemon.data.maxCP }}</p>
                         <p>HP: {{ pokemon.data.maxHP }}</p>
                     </div>
-                   
-                    
+
+
                 </div>
             </div>
             <div v-if="pokemon.data.evolutions.length" class="pokemon-item__evolutions">
@@ -175,6 +175,11 @@ export default defineComponent({
         }
     }
 
+    &__image img {
+        width: 80%;
+        object-fit: contain;
+    }
+
     &__details,
     &__image {
         @media (min-width: 320px) {
@@ -189,7 +194,7 @@ export default defineComponent({
             justify-content: center;
         }
     }
-    
+
     @media (min-width: 767px) {
         &__image img {
             width: 80%;
