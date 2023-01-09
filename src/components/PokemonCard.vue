@@ -92,6 +92,7 @@ export default defineComponent({
 
             img {
                 margin-inline: 16px;
+                object-fit: contain;
             }
 
             .pokemon__favorite {
@@ -101,7 +102,7 @@ export default defineComponent({
             }
         }
     }
-    
+
     &__details {
         box-sizing: border-box;
         padding-inline-start: 12px;
@@ -136,6 +137,7 @@ export default defineComponent({
     &__card img {
         height: 80px;
         width: 80px;
+        object-fit: contain;
     }
 
     &__details-action {
